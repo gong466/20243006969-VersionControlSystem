@@ -1,43 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Root layout: ConstraintLayout provides flexible positioning for child views -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="20dp"
-    tools:context=".MainActivity">
+    android:padding="24dp"> <!-- Padding around the entire screen -->
 
+    <!-- Title TextView: "Welcome Back" centered at the top -->
     <TextView
+        android:id="@+id/textViewWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:text="Welcome Back"
+        android:textColor="#212121"
         android:textSize="28sp"
         android:textStyle="bold"
-        android:layout_marginBottom="30dp"
-        android:layout_marginTop="45dp"/>
+        app:layout_constraintEnd_toEndOf="parent"   <!-- Center horizontally (align right to parent) -->
+    app:layout_constraintStart_toStartOf="parent" <!-- Center horizontally (align left to parent) -->
+    app:layout_constraintTop_toTopOf="parent" />  <!-- Align to top -->
 
+    <!-- Email input field -->
     <EditText
-        android:id="@+id/usernameInput"
-        android:layout_width="match_parent"
+        android:id="@+id/editTextEmail"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
         android:hint="Email or Username"
         android:inputType="textEmailAddress"
-        android:layout_marginBottom="16dp" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewWelcome" />
 
+    <!-- Password input field -->
     <EditText
-        android:id="@+id/passwordInput"
-        android:layout_width="match_parent"
+        android:id="@+id/editTextPassword"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Password"
         android:inputType="textPassword"
-        android:layout_marginBottom="24dp" />
+        android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextEmail" />
 
-    <Button
-        android:id="@+id/loginButton"
-        android:layout_width="match_parent"
+    <!-- Container for buttons: LinearLayout arranges children horizontally -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Log In" />
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextPassword">
 
-</LinearLayout>
+        <!-- Log In Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonLogin"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="Log In"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:backgroundTint="#6750A4"
+            app:cornerRadius="28dp" />
+
+        <!-- Cancel Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancel"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white"
+            app:backgroundTint="#6750A4"
+            app:cornerRadius="28dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
